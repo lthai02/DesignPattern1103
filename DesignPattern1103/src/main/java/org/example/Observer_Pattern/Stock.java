@@ -6,22 +6,35 @@ import java.util.List;
 public class Stock implements Subject {
     private double price;
     private List<Observer> investors = new ArrayList<>();
-    @Override
-    public void addObserve(Stock stock) {
+
+    public Stock(double price) {
+        this.price = price;
     }
 
     @Override
-    public void removeObserve(Stock stock) {
-
+    public void addObserve(Observer observer) {
+        investors.add(observer);
     }
 
     @Override
-    public void notifycation() {
+    public void removeObserve(Observer observer) {
+        investors.remove(observer);
+    }
 
+    @Override
+    public void notification() {
+        for (Observer investor : investors) {
+            investor.update(price);
+        }
     }
 
     @Override
     public void setPrice(double price) {
-
+        if (this.price != price) {
+            System.out.println("Stock price change to " + price);
+            this.price = price;
+            notification();
+        }
     }
+
 }
