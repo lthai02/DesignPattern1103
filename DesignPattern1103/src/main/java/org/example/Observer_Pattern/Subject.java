@@ -1,8 +1,11 @@
 package org.example.Observer_Pattern;
 
 public interface Subject {
-    void addObserve(Stock stock);
-    void removeObserve(Stock stock);
-    void notifycation();
+    void addObserve(Observer observer);
+
+    void removeObserve(Observer observer);
+
+    void notification();
+
     void setPrice(double price);
 }
